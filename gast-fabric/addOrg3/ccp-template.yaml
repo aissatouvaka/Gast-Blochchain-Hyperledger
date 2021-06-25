@@ -1,0 +1,34 @@
+---
+name: test-network-gast${ORG}
+version: 1.0.0
+client:
+  organization: Gast${ORG}
+  connection:
+    timeout:
+      peer:
+        endorser: '300'
+organizations:
+  Org${ORG}:
+    mspid: Gast${ORG}MSP
+    peers:
+    - peer0.gast${ORG}.gast-network.com
+    certificateAuthorities:
+    - ca.gast${ORG}.gast-network.com
+peers:
+  peer0.gast${ORG}.gast-network.com:
+    url: grpcs://localhost:${P0PORT}
+    tlsCACerts:
+      pem: |
+        ${PEERPEM}
+    grpcOptions:
+      ssl-target-name-override: peer0.gast${ORG}.gast-network.com
+      hostnameOverride: peer0.gast${ORG}.gast-network.com
+certificateAuthorities:
+  ca.gast${ORG}.gast-network.com:
+    url: https://localhost:${CAPORT}
+    caName: ca-org${ORG}
+    tlsCACerts:
+      pem: |
+        ${CAPEM}
+    httpOptions:
+      verify: false

@@ -1,0 +1,77 @@
+# Copyright IBM Corp. All Rights Reserved.
+#
+# SPDX-License-Identifier: Apache-2.0
+#
+
+version: '2'
+
+volumes:
+  orderer2.gast-network.com:
+  orderer3.gast-network.com:
+  orderer4.gast-network.com:
+  orderer5.gast-network.com:
+
+networks:
+  byfn:
+
+services:
+
+  orderer2.gast-network.com:
+    extends:
+      file: base/peer-base.yaml
+      service: orderer-base
+    container_name: orderer2.gast-network.com
+    networks:
+    - byfn
+    volumes:
+        - ./channel-artifacts/genesis.block:/var/hyperledger/orderer/orderer.genesis.block
+        - ./crypto-config/ordererOrganizations/gast-network.com/orderers/orderer2.gast-network.com/msp:/var/hyperledger/orderer/msp
+        - ./crypto-config/ordererOrganizations/gast-network.com/orderers/orderer2.gast-network.com/tls/:/var/hyperledger/orderer/tls
+        - orderer2.gast-network.com:/var/hyperledger/production/orderer
+    ports:
+    - 8050:7050
+
+  orderer3.gast-network.com:
+    extends:
+      file: base/peer-base.yaml
+      service: orderer-base
+    container_name: orderer3.gast-network.com
+    networks:
+    - byfn
+    volumes:
+        - ./channel-artifacts/genesis.block:/var/hyperledger/orderer/orderer.genesis.block
+        - ./crypto-config/ordererOrganizations/gast-network.com/orderers/orderer3.gast-network.com/msp:/var/hyperledger/orderer/msp
+        - ./crypto-config/ordererOrganizations/gast-network.com/orderers/orderer3.gast-network.com/tls/:/var/hyperledger/orderer/tls
+        - orderer3.gast-network.com:/var/hyperledger/production/orderer
+    ports:
+    - 9050:7050
+
+  orderer4.gast-network.com:
+    extends:
+      file: base/peer-base.yaml
+      service: orderer-base
+    container_name: orderer4.gast-network.com
+    networks:
+    - byfn
+    volumes:
+        - ./channel-artifacts/genesis.block:/var/hyperledger/orderer/orderer.genesis.block
+        - ./crypto-config/ordererOrganizations/gast-network.com/orderers/orderer4.gast-network.com/msp:/var/hyperledger/orderer/msp
+        - ./crypto-config/ordererOrganizations/gast-network.com/orderers/orderer4.gast-network.com/tls/:/var/hyperledger/orderer/tls
+        - orderer4.gast-network.com:/var/hyperledger/production/orderer
+    ports:
+    - 10050:7050
+
+  orderer5.gast-network.com:
+    extends:
+      file: base/peer-base.yaml
+      service: orderer-base
+    container_name: orderer5.gast-network.com
+    networks:
+    - byfn
+    volumes:
+        - ./channel-artifacts/genesis.block:/var/hyperledger/orderer/orderer.genesis.block
+        - ./crypto-config/ordererOrganizations/gast-network.com/orderers/orderer5.gast-network.com/msp:/var/hyperledger/orderer/msp
+        - ./crypto-config/ordererOrganizations/gast-network.com/orderers/orderer5.gast-network.com/tls/:/var/hyperledger/orderer/tls
+        - orderer5.gast-network.com:/var/hyperledger/production/orderer
+    ports:
+    - 11050:7050

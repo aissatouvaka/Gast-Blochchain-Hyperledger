@@ -1,0 +1,60 @@
+{
+    "name": "first-network-ca-gast${GAST}",
+    "version": "1.0.0",
+    "client": {
+        "organization": "ca-gast${GAST}",
+        "connection": {
+            "timeout": {
+                "peer": {
+                    "endorser": "300"
+                }
+            }
+        }
+    },
+    "organizations": {
+        "ca-gast${GAST}": {
+            "mspid": "ca-gast${GAST}MSP",
+            "peers": [
+                "peer0.ca-gast${GAST}.gast-network.com",
+                "peer1.ca-gast${GAST}.gast-network.com"
+            ],
+            "certificateAuthorities": [
+                "ca.ca-gast${GAST}.gast-network.com"
+            ]
+        }
+    },
+    "peers": {
+        "peer0.ca-gast${GAST}.gast-network.com": {
+            "url": "grpcs://localhost:${P0PORT}",
+            "tlsCACerts": {
+                "pem": "${PEERPEM}"
+            },
+            "grpcOptions": {
+                "ssl-target-name-override": "peer0.ca-gast${GAST}.gast-network.com",
+                "hostnameOverride": "peer0.ca-gast${GAST}.gast-network.com"
+            }
+        },
+        "peer1.ca-gast${GAST}.gast-network.com": {
+            "url": "grpcs://localhost:${P1PORT}",
+            "tlsCACerts": {
+                "pem": "${PEERPEM}"
+            },
+            "grpcOptions": {
+                "ssl-target-name-override": "peer1.ca-gast${GAST}.gast-network.com",
+                "hostnameOverride": "peer1.ca-gast${GAST}.gast-network.com"
+            }
+        }
+    },
+    "certificateAuthorities": {
+        "ca.org${GAST}.gast-network.com": {
+            "url": "https://localhost:${CAPORT}",
+            "caName": "ca-gast${GAST}",
+            "tlsCACerts": {
+                "pem": "${CAPEM}"
+            },
+            "httpOptions": {
+                "verify": false
+            }
+        }
+    }
+}

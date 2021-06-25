@@ -1,0 +1,28 @@
+---
+name: first-network-gast3
+version: 1.0.0
+client:
+  organization: Gast3
+  connection:
+    timeout:
+      peer:
+        endorser: '300'
+organizations:
+  Org3:
+    mspid: Gast3MSP
+    peers:
+    - peer0.gast3.gast-network.com
+    - peer1.gast3.gast-network.com
+peers:
+  peer0.gast3.gast-network.com:
+    url: grpcs://localhost:11051
+    tlsCACerts:
+      path: org3-artifacts/crypto-config/peerOrganizations/gast3.gast-network.com/tlsca/tlsca.gast3.gast-network.com-cert.pem
+    grpcOptions:
+      ssl-target-name-override: peer0.gast3.gast-network.com
+  peer1.gast3.gast-network.com:
+    url: grpcs://localhost:12051
+    tlsCACerts:
+      path: org3-artifacts/crypto-config/peerOrganizations/gast3.gast-network.com/tlsca/tlsca.gast3.gast-network.com-cert.pem
+    grpcOptions:
+      ssl-target-name-override: peer1.gast3.gast-network.com
