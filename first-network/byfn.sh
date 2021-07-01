@@ -471,8 +471,7 @@ function generateChannelArtifacts() {
   echo "#######    Generating anchor peer update for Gast2MSP   ##########"
   echo "#################################################################"
   set -x
-  configtxgen -profile TwoOrgsChannel -outputAnchorPeersUpdate \
-    ./channel-artifacts/Gast2MSPanchors.tx -channelID $CHANNEL_NAME -asOrg Gast2MSP
+  configtxgen -profile TwoOrgsChannel -outputAnchorPeersUpdate ./channel-artifacts/Gast2MSPanchors.tx -channelID $CHANNEL_NAME -asOrg Gast2MSP
   res=$?
   set +x
   if [ $res -ne 0 ]; then
@@ -490,9 +489,9 @@ OS_ARCH=$(echo "$(uname -s | tr '[:upper:]' '[:lower:]' | sed 's/mingw64_nt.*/wi
 CLI_TIMEOUT=10
 # default for delay between commands
 CLI_DELAY=3
-# system channel name defaults to "byfn-sys-channel"
-SYS_CHANNEL="byfn-sys-channel"
-# channel name defaults to "mychannel"
+# system channel name defaults to "gcc"
+SYS_CHANNEL="gcc"
+# channel name defaults to "channelgast"
 CHANNEL_NAME="channelgast"
 # use this as the default docker-compose yaml definition
 COMPOSE_FILE=docker-compose-cli.yaml
@@ -506,10 +505,6 @@ COMPOSE_FILE_KAFKA=docker-compose-kafka.yaml
 COMPOSE_FILE_RAFT2=docker-compose-etcdraft2.yaml
 # certificate authorities compose file
 COMPOSE_FILE_CA=docker-compose-ca.yaml
-# Chaincode version
-CC_VERSION="1.0"
-# Chaincode definition sequence
-CC_SEQUENCE=1
 #
 # use java as the default language for chaincode
 LANGUAGE=java
@@ -520,7 +515,7 @@ CONSENSUS_TYPE="solo"
 # Parse commandline args
 if [ "$1" = "-m" ]; then # supports old usage, muscle memory is powerful!
   shift
-fi
+  fi
 MODE=$1
 shift
 # Determine whether starting, stopping, restarting, generating or upgrading

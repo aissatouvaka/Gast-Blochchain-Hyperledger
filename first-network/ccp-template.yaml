@@ -8,7 +8,7 @@ client:
       peer:
         endorser: '300'
 organizations:
-  Gast${ORG}:
+  Gast${GAST}:
     mspid: Gast${GAST}MSP
     peers:
     - peer0.gast${GAST}.gast-network.com
@@ -16,7 +16,7 @@ organizations:
     certificateAuthorities:
     - ca.gast${GAST}.gast-network.com
 peers:
-  peer0.gast${ORG}.gast-network.com:
+  peer0.gast${GAST}.gast-network.com:
     url: grpcs://localhost:${P0PORT}
     tlsCACerts:
       pem: |
@@ -24,7 +24,7 @@ peers:
     grpcOptions:
       ssl-target-name-override: peer0.gast${GAST}.gast-network.com
       hostnameOverride: peer0.gast${GAST}.gast-network.com
-  peer1.gast${ORG}.gast-network.com:
+  peer1.gast${GAST}.gast-network.com:
     url: grpcs://localhost:${P1PORT}
     tlsCACerts:
       pem: |
@@ -33,7 +33,7 @@ peers:
       ssl-target-name-override: peer1.gast${GAST}.gast-network.com
       hostnameOverride: peer1.gast${GAST}.gast-network.com
 certificateAuthorities:
-  ca.gast${ORG}.gast-network.com:
+  ca.gast${GAST}.gast-network.com:
     url: https://localhost:${CAPORT}
     caName: ca-gast${GAST}
     tlsCACerts:
